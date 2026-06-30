@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOPAL Consultora Educativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul:    #1a3a6b;
+      --teal:    #2aaa8a;
+      --teal-lt: #3dcfac;
+      --bg:      #f4f8fb;
+      --blanco:  #ffffff;
+      --gris:    #5a6a7a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: #222;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--azul);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    nav .brand {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    nav .brand img { height: 46px; }
+    nav .brand span {
+      color: var(--blanco); font-size: 1.15rem; font-weight: 700; letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none; display: flex; gap: 1.5rem;
+    }
+    nav ul a {
+      color: rgba(255,255,255,0.88); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--teal-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, #1e5c8e 55%, var(--teal) 100%);
+      color: var(--blanco);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero img { height: 160px; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 18px rgba(0,0,0,0.3)); }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: 4px; }
+    .hero .sub {
+      font-size: 1.05rem; letter-spacing: 3px; font-weight: 300;
+      color: var(--teal-lt); margin-top: 0.3rem;
+    }
+    .hero .tagline {
+      margin-top: 1.4rem; font-size: 1.15rem; font-weight: 400; max-width: 600px; margin-inline: auto;
+      line-height: 1.7; opacity: 0.92;
+    }
+    .hero .pillars {
+      margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .hero .pillars span {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.4rem 1.1rem; border-radius: 999px; font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 4.5rem 1.5rem; }
+    .container { max-width: 960px; margin-inline: auto; }
+
+    h2 {
+      font-size: 1.9rem; font-weight: 700; color: var(--azul);
+      margin-bottom: 0.5rem; position: relative; display: inline-block;
+    }
+    h2::after {
+      content: ''; display: block; height: 4px; width: 60px;
+      background: var(--teal); border-radius: 2px; margin-top: 6px;
+    }
+    .section-intro {
+      color: var(--gris); font-size: 1.02rem; line-height: 1.8;
+      margin-top: 1.2rem; max-width: 820px;
+    }
+
+    /* ── QUIÉNES SOMOS ── */
+    #quienes { background: var(--blanco); }
+    .quienes-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.2rem;
+    }
+    .card-profesional {
+      background: var(--bg); border-radius: 16px; padding: 2rem;
+      border-left: 5px solid var(--teal);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card-profesional .icono { font-size: 2.4rem; margin-bottom: 0.6rem; }
+    .card-profesional h3 { font-size: 1.05rem; font-weight: 700; color: var(--azul); margin-bottom: 0.5rem; }
+    .card-profesional p { font-size: 0.94rem; color: var(--gris); line-height: 1.7; }
+
+    .diferencia-box {
+      margin-top: 2rem; background: linear-gradient(135deg, var(--azul), #1e5c8e);
+      border-radius: 16px; padding: 2rem 2.5rem; color: var(--blanco);
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .diferencia-box .icon-big { font-size: 3rem; flex-shrink: 0; }
+    .diferencia-box p { font-size: 1rem; line-height: 1.8; opacity: 0.94; }
+
+    /* ── PROPÓSITO ── */
+    #proposito { background: var(--bg); }
+    .proposito-card {
+      margin-top: 2rem; background: var(--blanco); border-radius: 16px;
+      padding: 2.5rem; display: flex; gap: 2rem; align-items: flex-start;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    .proposito-card .icon-circle {
+      width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal), var(--teal-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .proposito-card p { font-size: 1.02rem; color: var(--gris); line-height: 1.85; }
+    .stat-row {
+      display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+    .stat {
+      background: var(--azul); color: var(--blanco); border-radius: 14px;
+      padding: 1.2rem 1.8rem; flex: 1; min-width: 140px; text-align: center;
+    }
+    .stat .num { font-size: 2rem; font-weight: 800; color: var(--teal-lt); }
+    .stat .label { font-size: 0.82rem; opacity: 0.85; margin-top: 0.2rem; }
+
+    /* ── CAPACITACIONES ── */
+    #capacitaciones { background: var(--blanco); }
+    .caps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem; margin-top: 2.2rem;
+    }
+    .cap-card {
+      background: var(--bg); border-radius: 16px; padding: 2rem 1.5rem;
+      text-align: center; border-top: 5px solid var(--teal);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .cap-card:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .cap-card .emoji { font-size: 2.6rem; margin-bottom: 0.8rem; }
+    .cap-card h3 { font-size: 1rem; font-weight: 700; color: var(--azul); margin-bottom: 0.6rem; }
+    .cap-card p { font-size: 0.88rem; color: var(--gris); line-height: 1.65; }
+    .badge {
+      display: inline-block; margin-top: 1rem;
+      background: var(--teal); color: var(--blanco);
+      font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 999px;
+    }
+
+    /* ── SECTORES ── */
+    #sectores { background: var(--bg); }
+    .sectores-list {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;
+    }
+    .sector-pill {
+      background: var(--blanco); border: 2px solid var(--teal);
+      color: var(--azul); font-weight: 600; font-size: 0.9rem;
+      padding: 0.6rem 1.4rem; border-radius: 999px;
+      display: flex; align-items: center; gap: 0.4rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* ── CONTACTO ── */
+    #contacto { background: linear-gradient(135deg, var(--azul), #1e5c8e); color: var(--blanco); }
+    #contacto h2 { color: var(--blanco); }
+    #contacto h2::after { background: var(--teal-lt); }
+    #contacto .section-intro { color: rgba(255,255,255,0.85); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem; margin-top: 2rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px; padding: 1.5rem; text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .contact-card .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .contact-card h4 { font-size: 0.85rem; font-weight: 600; opacity: 0.75; margin-bottom: 0.3rem; }
+    .contact-card p { font-size: 0.95rem; font-weight: 600; }
+    .contact-card a { color: var(--teal-lt); text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    .cta-btn {
+      display: inline-block; margin-top: 2.5rem;
+      background: var(--teal); color: var(--blanco);
+      font-size: 1rem; font-weight: 700; padding: 0.9rem 2.5rem;
+      border-radius: 999px; text-decoration: none;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      transition: background .2s, transform .2s;
+    }
+    .cta-btn:hover { background: var(--teal-lt); transform: scale(1.04); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1e35; color: rgba(255,255,255,0.55);
+      text-align: center; padding: 1.5rem 1rem; font-size: 0.82rem;
+    }
+    footer strong { color: var(--teal-lt); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .quienes-grid { grid-template-columns: 1fr; }
+      .proposito-card { flex-direction: column; }
+      .diferencia-box { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">
+    <img src="logo.png" alt="NOPAL Logo" />
+    <span>NOPAL</span>
+  </div>
+  <ul>
+    <li><a href="#quienes">Quiénes Somos</a></li>
+    <li><a href="#proposito">Propósito</a></li>
+    <li><a href="#capacitaciones">Capacitaciones</a></li>
+    <li><a href="#sectores">Sectores</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="logo.png" alt="NOPAL Consultora Educativa" />
+  <h1>NOPAL</h1>
+  <div class="sub">CONSULTORA EDUCATIVA</div>
+  <p class="tagline">
+    Transformamos el conocimiento técnico en herramientas simples y prácticas<br />
+    para que cualquier persona sea capaz de <strong>salvar una vida</strong>.
+  </p>
+  <div class="pillars">
+    <span>Conocimiento</span>
+    <span>Práctica</span>
+    <span>Prevención</span>
+    <span>Vida</span>
+  </div>
+</div>
+
+<!-- QUIÉNES SOMOS -->
+<section id="quienes">
+  <div class="container">
+    <h2>¿Quiénes Somos?</h2>
+    <p class="section-intro">
+      Somos una consultora educativa fundada por <strong>Noelia y Pamela</strong>, profesionales apasionadas por la salud,
+      la seguridad y la docencia. Creamos este espacio con un propósito claro: transformar el conocimiento técnico en
+      herramientas simples, prácticas y accesibles para que cualquier persona sea capaz de salvar una vida.
+    </p>
+
+    <div class="quienes-grid">
+      <div class="card-profesional">
+        <div class="icono">🩺</div>
+        <h3>Mariana Pamela Dubie de la Cruz</h3>
+        <p>Licenciada en Enfermería · MT N° 4465<br/>Experiencia clínica y cuidado humano como base de cada capacitación. La mirada del cuidado y la empatía en cada emergencia.</p>
+      </div>
+      <div class="card-profesional">
+        <div class="icono">⚙️</div>
+        <h3>Noelia Tracanelli</h3>
+        <p>Lic. en Seguridad, Higiene y Control Ambiental Laboral · MT N° 3753<br/>Rigurosidad técnica, legal y de prevención de riesgos. Normativas vigentes y protocolos validados en cada taller.</p>
+      </div>
+    </div>
+
+    <div class="diferencia-box">
+      <div class="icon-big">🤝</div>
+      <p>
+        Esta <strong>sinergia profesional</strong> nos permite brindar una formación completa y de alto valor,
+        logrando que el aprendizaje sea <strong>simple, dinámico y aplicable a la vida real</strong>.
+        Dos miradas, un mismo propósito: prepararte para el momento que importa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROPÓSITO -->
+<section id="proposito">
+  <div class="container">
+    <h2>Nuestro Propósito</h2>
+
+    <div class="proposito-card">
+      <div class="icon-circle">🎯</div>
+      <p>
+        Acompañar a <strong>empresas, clubes, instituciones educativas y particulares</strong> en la creación de espacios seguros.
+        Sabemos que ante una emergencia —como un paro cardiorrespiratorio o una obstrucción de la vía aérea—
+        <strong>cada segundo cuenta</strong>. Por eso, derribamos los miedos teóricos y entrenamos a las personas para que
+        actúen con <strong>seguridad, rapidez y eficacia en el minuto cero</strong>.
+      </p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">100%</div>
+        <div class="label">Talleres prácticos</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="label">Áreas de capacitación</div>
+      </div>
+      <div class="stat">
+        <div class="num">0'</div>
+        <div class="label">Preparados para actuar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACITACIONES -->
+<section id="capacitaciones">
+  <div class="container">
+    <h2>Nuestras Capacitaciones</h2>
+    <p class="section-intro">
+      Diseñamos talleres dinámicos, <strong>100% prácticos</strong> y adaptados a las necesidades de cada sector.
+    </p>
+
+    <div class="caps-grid">
+      <div class="cap-card">
+        <div class="emoji">❤️</div>
+        <h3>RCP</h3>
+        <p>Técnicas actualizadas de compresión y reanimación cardiopulmonar para <strong>adultos, niños y lactantes</strong>.</p>
+        <span class="badge">Reanimación Cardiopulmonar</span>
+      </div>
+      <div class="cap-card">
+        <div class="emoji">💨</div>
+        <h3>Manejo de OVA</h3>
+        <p>Maniobras de desobstrucción <strong>(Heimlich)</strong> para actuar frente a un ahogamiento con seguridad y rapidez.</p>
+        <span class="badge">Obstrucción de Vía Aérea</span>
+      </div>
+      <div class="cap-card">
+        <div class="emoji">⚡</div>
+        <h3>Uso del DEA</h3>
+        <p>Entrenamiento práctico con <strong>equipos simuladores</strong> para perder el miedo a la tecnología que salva vidas.</p>
+        <span class="badge">Desfibrilador Externo</span>
+      </div>
+      <div class="cap-card">
+        <div class="emoji">🩹</div>
+        <h3>Primeros Auxilios</h3>
+        <p>Manejo inicial de <strong>heridas, quemaduras, fracturas, hemorragias y desmayos</strong> antes de que llegue la ambulancia.</p>
+        <span class="badge">Básicos y Avanzados</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores">
+  <div class="container">
+    <h2>¿A Quién Va Dirigido?</h2>
+    <p class="section-intro">
+      Nuestras capacitaciones están diseñadas para adaptarse a cualquier entorno donde la seguridad sea una prioridad.
+    </p>
+    <div class="sectores-list">
+      <div class="sector-pill">🏢 Empresas</div>
+      <div class="sector-pill">⚽ Clubes deportivos</div>
+      <div class="sector-pill">🎓 Instituciones educativas</div>
+      <div class="sector-pill">👨‍👩‍👧 Particulares y familias</div>
+      <div class="sector-pill">🏥 Centros de salud</div>
+      <div class="sector-pill">🏗️ Industria y construcción</div>
+      <div class="sector-pill">🛒 Comercios y retail</div>
+      <div class="sector-pill">🏨 Hotelería y turismo</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container" style="text-align:center">
+    <h2>Contactanos</h2>
+    <p class="section-intro">
+      ¿Querés capacitar a tu equipo o consultar sobre nuestros talleres? Estamos para ayudarte.
+    </p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon">📱</div>
+        <h4>WhatsApp</h4>
+        <p><a href="https://wa.me/5492954337692" target="_blank">+54 9 2954 33-7692</a></p>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📧</div>
+        <h4>Email</h4>
+        <p style="font-size:0.85rem;word-break:break-all;"><a href="mailto:tracanellihys@gmail.com">tracanellihys@gmail.com</a></p>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <h4>Zona de cobertura</h4>
+        <p>Argentina</p>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📸</div>
+        <h4>Instagram</h4>
+        <p><a href="https://www.instagram.com/lic.noeliatracanelli/" target="_blank">@lic.noeliatracanelli</a></p>
+      </div>
+    </div>
+
+    <a href="#" class="cta-btn" onclick="abrirFormulario(); return false;">
+      💬 Hacer una consulta
+    </a>
+  </div>
+</section>
+
+<!-- MODAL CONSULTA -->
+<div id="modalConsulta" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:999; overflow-y:auto; padding:2rem 1rem;">
+  <div style="background:#fff; border-radius:20px; max-width:540px; margin:auto; padding:2.5rem 2rem; position:relative; box-shadow:0 8px 40px rgba(0,0,0,0.25);">
+    <button onclick="cerrarFormulario()" style="position:absolute; top:1rem; right:1.2rem; background:none; border:none; font-size:1.6rem; cursor:pointer; color:#888;">&times;</button>
+    <h3 style="color:#1a3a6b; font-size:1.4rem; font-weight:700; margin-bottom:0.3rem;">Hacé tu consulta</h3>
+    <p style="color:#5a6a7a; font-size:0.9rem; margin-bottom:1.5rem;">Completá el formulario y te respondemos a la brevedad.</p>
+
+    <form id="formConsulta" onsubmit="enviarConsulta(event)">
+      <div style="margin-bottom:1.1rem;">
+        <label style="font-size:0.85rem; font-weight:600; color:#1a3a6b; display:block; margin-bottom:0.3rem;">Nombre completo *</label>
+        <input id="fc_nombre" type="text" required placeholder="Ej: Juan Pérez"
+          style="width:100%; padding:0.65rem 1rem; border:1.5px solid #cdd7e0; border-radius:10px; font-size:0.95rem; font-family:inherit; outline:none;"
+          onfocus="this.style.borderColor='#2aaa8a'" onblur="this.style.borderColor='#cdd7e0'" />
+      </div>
+
+      <div style="margin-bottom:1.1rem;">
+        <label style="font-size:0.85rem; font-weight:600; color:#1a3a6b; display:block; margin-bottom:0.3rem;">Teléfono *</label>
+        <input id="fc_telefono" type="tel" required placeholder="Ej: 2954 123456"
+          style="width:100%; padding:0.65rem 1rem; border:1.5px solid #cdd7e0; border-radius:10px; font-size:0.95rem; font-family:inherit; outline:none;"
+          onfocus="this.style.borderColor='#2aaa8a'" onblur="this.style.borderColor='#cdd7e0'" />
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.1rem;">
+        <div>
+          <label style="font-size:0.85rem; font-weight:600; color:#1a3a6b; display:block; margin-bottom:0.3rem;">Provincia *</label>
+          <select id="fc_provincia" required onchange="cargarCiudades()"
+            style="width:100%; padding:0.65rem 0.8rem; border:1.5px solid #cdd7e0; border-radius:10px; font-size:0.9rem; font-family:inherit; outline:none; background:#fff; color:#222;"
+            onfocus="this.style.borderColor='#2aaa8a'" onblur="this.style.borderColor='#cdd7e0'">
+            <option value="">Seleccioná</option>
+            <option>Buenos Aires</option>
+            <option>CABA</option>
+            <option>Catamarca</option>
+            <option>Chaco</option>
+            <option>Chubut</option>
+            <option>Córdoba</option>
+            <option>Corrientes</option>
+            <option>Entre Ríos</option>
+            <option>Formosa</option>
+            <option>Jujuy</option>
+            <option>La Pampa</option>
+            <option>La Rioja</option>
+            <option>Mendoza</option>
+            <option>Misiones</option>
+            <option>Neuquén</option>
+            <option>Río Negro</option>
+            <option>Salta</option>
+            <option>San Juan</option>
+            <option>San Luis</option>
+            <option>Santa Cruz</option>
+            <option>Santa Fe</option>
+            <option>Santiago del Estero</option>
+            <option>Tierra del Fuego</option>
+            <option>Tucumán</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.85rem; font-weight:600; color:#1a3a6b; display:block; margin-bottom:0.3rem;">Ciudad *</label>
+          <select id="fc_ciudad" required
+            style="width:100%; padding:0.65rem 0.8rem; border:1.5px solid #cdd7e0; border-radius:10px; font-size:0.9rem; font-family:inherit; outline:none; background:#fff; color:#222;"
+            onfocus="this.style.borderColor='#2aaa8a'" onblur="this.style.borderColor='#cdd7e0'">
+            <option value="">Primero provincia</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label style="font-size:0.85rem; font-weight:600; color:#1a3a6b; display:block; margin-bottom:0.3rem;">¿Qué querés consultar? *</label>
+        <textarea id="fc_mensaje" required rows="4" placeholder="Ej: Quiero capacitar a mi equipo en RCP y primeros auxilios..."
+          style="width:100%; padding:0.65rem 1rem; border:1.5px solid #cdd7e0; border-radius:10px; font-size:0.95rem; font-family:inherit; outline:none; resize:vertical;"
+          onfocus="this.style.borderColor='#2aaa8a'" onblur="this.style.borderColor='#cdd7e0'"></textarea>
+      </div>
+
+      <button type="submit"
+        style="width:100%; background:#2aaa8a; color:#fff; border:none; padding:0.9rem; border-radius:999px; font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; transition:background .2s;"
+        onmouseover="this.style.background='#3dcfac'" onmouseout="this.style.background='#2aaa8a'">
+        💬 Enviar por WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <strong>NOPAL Consultora Educativa</strong> · Conocimiento · Práctica · Prevención · Vida</p>
+</footer>
+
+<script>
+const ciudadesPorProvincia = {
+  "Buenos Aires": ["La Plata","Mar del Plata","Bahía Blanca","Quilmes","Lanús","Lomas de Zamora","Morón","La Matanza","Avellaneda","San Martín","Tigre","Merlo","Moreno","Florencio Varela","Berazategui","Almirante Brown","Ezeiza","San Isidro","San Fernando","Vicente López","Hurlingham","Ituzaingó","José C. Paz","Malvinas Argentinas","San Miguel","Tres de Febrero","Pergamino","Tandil","Junín","Zárate","Campana","Luján","Mercedes","San Nicolás","Necochea","Olavarría","Azul","Trenque Lauquen"],
+  "CABA": ["Ciudad Autónoma de Buenos Aires"],
+  "Catamarca": ["San Fernando del Valle de Catamarca","Belén","Santa María","Andalgalá"],
+  "Chaco": ["Resistencia","Presidencia Roque Sáenz Peña","Villa Ángela","Barranqueras","Charata"],
+  "Chubut": ["Rawson","Comodoro Rivadavia","Puerto Madryn","Trelew","Esquel","Río Gallegos"],
+  "Córdoba": ["Córdoba","Río Cuarto","Villa María","San Francisco","Alta Gracia","Villa Carlos Paz","Cosquín","Jesús María","Bell Ville","Río Tercero","Marcos Juárez"],
+  "Corrientes": ["Corrientes","Goya","Paso de los Libres","Curuzú Cuatiá","Mercedes","Bella Vista"],
+  "Entre Ríos": ["Paraná","Concordia","Gualeguaychú","Concepción del Uruguay","Colón","Victoria","La Paz"],
+  "Formosa": ["Formosa","Clorinda","Pirané","El Colorado"],
+  "Jujuy": ["San Salvador de Jujuy","San Pedro","Palpalá","Libertador General San Martín","Humahuaca"],
+  "La Pampa": ["Santa Rosa","General Pico","Eduardo Castex","Realicó","Victorica"],
+  "La Rioja": ["La Rioja","Chilecito","Aimogasta","Chepes"],
+  "Mendoza": ["Mendoza","Godoy Cruz","San Rafael","Guaymallén","Luján de Cuyo","Maipú","Las Heras","Rivadavia","San Martín"],
+  "Misiones": ["Posadas","Oberá","Eldorado","Puerto Iguazú","Apóstoles","Montecarlo"],
+  "Neuquén": ["Neuquén","San Martín de los Andes","Zapala","Cutral-Có","Plaza Huincul","Centenario"],
+  "Río Negro": ["Viedma","Bariloche","Cipolletti","General Roca","Allen","El Bolsón","Catriel"],
+  "Salta": ["Salta","Orán","Tartagal","Metán","Cafayate","Rosario de la Frontera","San Ramón de la Nueva Orán"],
+  "San Juan": ["San Juan","Rawson","Rivadavia","Caucete","Santa Lucía","Pocito"],
+  "San Luis": ["San Luis","Villa Mercedes","Merlo","Juana Koslay","Potrero de los Funes"],
+  "Santa Cruz": ["Río Gallegos","Caleta Olivia","El Calafate","Pico Truncado","Puerto Madryn","Las Heras"],
+  "Santa Fe": ["Santa Fe","Rosario","Rafaela","Venado Tuerto","Reconquista","Santo Tomé","Villa Gobernador Gálvez","San Lorenzo","Esperanza","Casilda"],
+  "Santiago del Estero": ["Santiago del Estero","La Banda","Termas de Río Hondo","Añatuya","Frías"],
+  "Tierra del Fuego": ["Ushuaia","Río Grande","Tolhuin"],
+  "Tucumán": ["San Miguel de Tucumán","Concepción","Tafí Viejo","Aguilares","Banda del Río Salí","Yerba Buena","Famailla"]
+};
+
+function abrirFormulario() {
+  document.getElementById('modalConsulta').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarFormulario() {
+  document.getElementById('modalConsulta').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalConsulta').addEventListener('click', function(e) {
+  if (e.target === this) cerrarFormulario();
+});
+
+function cargarCiudades() {
+  const prov = document.getElementById('fc_provincia').value;
+  const sel = document.getElementById('fc_ciudad');
+  sel.innerHTML = '';
+  if (!prov || !ciudadesPorProvincia[prov]) {
+    sel.innerHTML = '<option value="">Primero provincia</option>';
+    return;
+  }
+  sel.innerHTML = '<option value="">Seleccioná</option>';
+  ciudadesPorProvincia[prov].forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+function enviarConsulta(e) {
+  e.preventDefault();
+  const nombre   = document.getElementById('fc_nombre').value.trim();
+  const telefono = document.getElementById('fc_telefono').value.trim();
+  const provincia= document.getElementById('fc_provincia').value;
+  const ciudad   = document.getElementById('fc_ciudad').value;
+  const mensaje  = document.getElementById('fc_mensaje').value.trim();
+
+  const texto = `Hola NOPAL Consultora Educativa! 👋\n\n` +
+    `*Nombre:* ${nombre}\n` +
+    `*Teléfono:* ${telefono}\n` +
+    `*Ubicación:* ${ciudad}, ${provincia}\n\n` +
+    `*Consulta:*\n${mensaje}`;
+
+  window.open(`https://wa.me/5492954337692?text=${encodeURIComponent(texto)}`, '_blank');
+}
+</script>
+</body>
+</html>
